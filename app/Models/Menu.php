@@ -17,4 +17,14 @@ class Menu extends Model
         'foto',
         'harga',
     ];
+
+    public function merchant()
+    {
+        return $this->belongsTo(User::class, 'merchant_id');
+    }
+
+    public function jenisMakanan()
+    {
+        return $this->belongsTo(JenisMakanan::class);
+    }
 }

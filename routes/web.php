@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Auth Route
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register-merchant', [AuthController::class, 'showRegisterFormMerchant'])->name('register.merchant');
@@ -28,6 +29,7 @@ Route::get('/register-customer', [AuthController::class, 'showRegisterFormCustom
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// Menu Route
 Route::middleware(['auth'])->group(function () {
     Route::get('menu', [MenuController::class, 'index'])->name('menu');
     Route::get('menu-create', [MenuController::class, 'create'])->name('menu.create');

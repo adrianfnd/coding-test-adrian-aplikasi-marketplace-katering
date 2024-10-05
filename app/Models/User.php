@@ -21,6 +21,7 @@ class User extends Authenticatable
         'role_id',
         'nama_perusahaan',
         'email',
+        'email_verified_at',
         'password',
         'alamat',
         'kontak',
@@ -46,4 +47,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'merchant_id');
+    }
 }

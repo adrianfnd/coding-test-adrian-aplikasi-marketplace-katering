@@ -12,4 +12,9 @@ class JenisMakanan extends Model
     protected $fillable = [
         'nama_jenis_makanan',
     ];
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
 }
