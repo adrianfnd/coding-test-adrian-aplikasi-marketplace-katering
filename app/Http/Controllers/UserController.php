@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $request->validate([
             'nama_perusahaan' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
+            'alamat' => 'nullable|string|max:255',
             'kontak' => 'required|string|max:20',
             'deskripsi' => 'nullable|string|max:500',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

@@ -9,6 +9,7 @@
         </div>
     </div>
     <div class="card-body">
+      <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -50,6 +51,10 @@
                 @endforeach
             </tbody>
         </table>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+      {{ $menus->links('pagination::bootstrap-4') }}
     </div>
 </div>
 @endsection
