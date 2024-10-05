@@ -7,14 +7,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #333;
+            position: relative;
+            background-image: url('{{ asset('assets/backgrounds/background1.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .card {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 1.0);
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-md-6">
+            <div class="col-lg-4 col-md-6 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Register Katering</h2>
@@ -28,14 +47,14 @@
                             <input type="hidden" name="role" value="Merchant">
                             <div class="mb-3">
                                 <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                                <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required>
+                                <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan" value="{{ old('nama_perusahaan') }}" required>
                                 @if ($errors->has('nama_perusahaan'))
                                     <p class="text-danger">{{ $errors->first('nama_perusahaan') }}</p>
                                 @endif
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                                 @if ($errors->has('email'))
                                     <p class="text-danger">{{ $errors->first('email') }}</p>
                                 @endif
@@ -56,14 +75,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat</label>
-                                <textarea class="form-control" id="alamat" rows="3" name="alamat" required></textarea>
+                                <textarea class="form-control" id="alamat" rows="3" name="alamat" required>{{ old('alamat') }}</textarea>
                                 @if ($errors->has('alamat'))
                                     <p class="text-danger">{{ $errors->first('alamat') }}</p>
                                 @endif
                             </div>
                             <div class="mb-3">
                                 <label for="kontak" class="form-label">Kontak</label>
-                                <input type="tel" class="form-control" id="kontak" name="kontak" required>
+                                <input type="tel" class="form-control" id="kontak" name="kontak" value="{{ old('kontak') }}" required>
                                 @if ($errors->has('kontak'))
                                     <p class="text-danger">{{ $errors->first('kontak') }}</p>
                                 @endif

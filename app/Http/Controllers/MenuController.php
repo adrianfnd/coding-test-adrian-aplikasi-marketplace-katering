@@ -40,8 +40,8 @@ class MenuController extends Controller
             'nama' => 'required|unique:menus|max:255',
             'deskripsi' => 'required|max:255',
             'jenis_makanan' => 'required',
-            'harga' => 'required|numeric|min:1000',
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'harga' => 'required|numeric|min:1000|max:999999',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required' => 'Nama harus diisi.',
             'nama.unique' => 'Nama sudah ada dalam menu.',
@@ -52,6 +52,8 @@ class MenuController extends Controller
             'harga.required' => 'Harga harus diisi.',
             'harga.numeric' => 'Harga harus berupa angka.',
             'harga.min' => 'Harga minimal adalah 1000.',
+            'harga.max' => 'Harga maksimal adalah 999999.',
+            'foto.required' => 'File foto harus diunggah.',
             'foto.image' => 'File yang diunggah harus berupa gambar.',
             'foto.mimes' => 'Foto harus bertipe jpeg, png, atau jpg.',
             'foto.max' => 'Ukuran foto tidak boleh lebih dari 2MB.',
@@ -88,9 +90,11 @@ class MenuController extends Controller
      */
     public function edit(string $id)
     {
+        $jenisMakanan = JenisMakanan::all();
+
         $menu = Menu::findOrFail($id);
 
-        return view('menu.edit', compact('menu'));
+        return view('menu.edit', compact('menu', 'jenisMakanan'));
     }
 
     /**
@@ -104,8 +108,8 @@ class MenuController extends Controller
             'nama' => 'required|max:255|unique:menus,nama,' . $menu->id,
             'deskripsi' => 'required|max:255',
             'jenis_makanan' => 'required',
-            'harga' => 'required|numeric|min:1000',
-            'foto' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'harga' => 'required|numeric|min:1000|max:999999',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required' => 'Nama harus diisi.',
             'nama.unique' => 'Nama sudah ada dalam menu.',
@@ -116,6 +120,8 @@ class MenuController extends Controller
             'harga.required' => 'Harga harus diisi.',
             'harga.numeric' => 'Harga harus berupa angka.',
             'harga.min' => 'Harga minimal adalah 1000.',
+            'harga.max' => 'Harga maksimal adalah 999999.',
+            'foto.required' => 'File foto harus diunggah.',
             'foto.image' => 'File yang diunggah harus berupa gambar.',
             'foto.mimes' => 'Foto harus bertipe jpeg, png, atau jpg.',
             'foto.max' => 'Ukuran foto tidak boleh lebih dari 2MB.',

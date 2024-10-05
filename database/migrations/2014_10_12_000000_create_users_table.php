@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->string('kontak');
             $table->string('deskripsi')->nullable();
+            $table->string('profile_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MenuController;
 
 /*
@@ -31,6 +32,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Menu Route
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [UserController::class, 'edit'])->name('profile');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+
     Route::get('menu', [MenuController::class, 'index'])->name('menu');
     Route::get('menu-create', [MenuController::class, 'create'])->name('menu.create');
     Route::post('menu-store', [MenuController::class, 'store'])->name('menu.store');

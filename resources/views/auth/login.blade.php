@@ -7,7 +7,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #333;
+            position: relative;
+            background-image: url('{{ asset('assets/backgrounds/background1.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .card {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 1.0);
         }
     </style>
 </head>
