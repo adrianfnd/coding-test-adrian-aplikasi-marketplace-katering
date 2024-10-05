@@ -30,7 +30,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/menu');
+
+            if (Auth::user()->role->nama_role == 'Merchant') {
+                return redirect()->intended('/menu');
+            } else if (Auth::user()->role->nama_role == 'Customer') {
+                return redirect()->intended('/order');
+            }
         }
 
         return back()->withErrors(['credentials' => 'Email atau password salah.']);
@@ -45,7 +50,7 @@ class AuthController extends Controller
             'password_confirmation' => 'required',
             'alamat' => 'nullable|string|max:255',
             'kontak' => 'required|string|max:15',
-            'role' => 'required|in:Pelanggan,Merchant',
+            'role' => 'required|in:Customer,Merchant',
         ], [
             'nama_perusahaan.required' => 'Nama perusahaan harus diisi.',
             'email.required' => 'Email harus diisi.',

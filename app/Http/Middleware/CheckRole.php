@@ -24,7 +24,7 @@ class CheckRole
 
         $user = Auth::user()->load('role');
 
-        if ($user->role->name == $role) {
+        if ($user->role->nama_role == $role) {
             return $next($request);
         }
 

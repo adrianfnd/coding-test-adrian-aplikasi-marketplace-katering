@@ -1,28 +1,35 @@
-<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3 text-white min-vh-100">
-        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">Marketplace Katering</span>
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark sidebar">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-5 d-none d-sm-inline">Marketplace Katering</span>
         </a>
-        <hr class="bg-light my-4 w-100">
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-            <li class="nav-item">
-                <a href="{{ route('menu') }}" class="nav-link align-middle px-0 text-white">
-                    <i class="bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Menu</span>
-                </a>
-            </li>
-            <li>
+            @if (auth()->user()->role->nama_role == 'Merchant')
+                <li class="nav-item">
+                    <a href="{{ route('menu') }}" class="nav-link align-middle px-0 text-white">
+                        <i class="bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Menu</span>
+                    </a>
+                </li>
+            @elseif (auth()->user()->role->nama_role == 'Customer')
+                <li class="nav-item">
+                    <a href="{{ route('order') }}" class="nav-link align-middle px-0 text-white">
+                        <i class="bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Menu</span>
+                    </a>
+                </li>
+            @endif
+            {{-- <li>
                 <a href="#" class="nav-link px-0 align-middle text-white">
                     <i class="bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
-        <hr class="bg-light my-4 w-100">
+        <hr>
         <div class="dropdown pb-4">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 @if (auth()->user()->profile_image)
-                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="{{ auth()->user()->name }}" width="40" height="40" class="rounded-circle me-3">
+                    <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="{{ auth()->user()->name }}" width="30" height="30" class="rounded-circle">
                 @else
-                    <img src="https://via.placeholder.com/40" alt="Default Image" width="40" height="40" class="rounded-circle me-3">
+                    <img src="https://via.placeholder.com/30" alt="Default Image" width="30" height="30" class="rounded-circle">
                 @endif
                 <span class="d-none d-sm-inline mx-1">{{ Auth::user()->nama_perusahaan }}</span>
             </a>
